@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Card from '../components/Card';
 
 
@@ -11,13 +13,18 @@ const HomeScreen = () => {
             </header>
 
             <div className="grid grid-cols-4 gap-4" >
-                <Card />
+                <Card footer = {<Link to="/sorting/BubbleSort" className="text-blue-500 hover:underline"> Bubble Sort </Link>} >
+                    <h1> Sorting </h1>
+
+                </Card> 
 
                 <Card />
 
                 <Card footer={<p >not default</p>}>
                     <h2 >not default</h2>
                 </Card>
+
+                <Card />
             </div>
 
         </div>

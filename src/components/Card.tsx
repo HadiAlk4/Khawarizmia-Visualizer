@@ -1,4 +1,3 @@
-import {ReactNode } from "react";
 import {clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -21,8 +20,8 @@ const Card = ({
     const defaultFooterStyle = "mt-auto pt-4 border-t border-gray-100 text-sm";
 
     return (
-
-        <div className={cn(defaultStyle, className)}>
+        <div 
+        className={cn(defaultStyle, className)}>
             <div className="flex-1">
             {children}
         </div>
