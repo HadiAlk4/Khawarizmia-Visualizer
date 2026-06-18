@@ -3,6 +3,7 @@ import { useState } from 'react';
 import RandomGenerator from '../../utilities/RandomGenerator';
 import sleep from '../../utilities/sleep';
 import getBarColor from '../../utilities/getBarColor';
+import { Link } from 'react-router-dom';
 
 const BubbleSort = () => {
 
@@ -51,7 +52,7 @@ const BubbleSort = () => {
 
             <button onClick={() => {
                 setBubbleArray(RandomGenerator())
-                setCompareIndices([]);
+                setCompareIndices([]); 
                 setSwapIndices([]);
                 setSortedIndices([]);
             }
@@ -67,6 +68,11 @@ const BubbleSort = () => {
                 >
                 Sort
             </button>
+
+            <Link to="/" className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                Back to Home
+            </Link>    
+            
 
             <div className="flex flex-row items-end justify-center h-64 gap-1 mt-10">
 
