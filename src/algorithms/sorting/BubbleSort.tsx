@@ -4,9 +4,11 @@ import RandomGenerator from '../../utilities/RandomGenerator';
 import sleep from '../../utilities/sleep';
 import getBarColor from '../../utilities/getBarColor';
 import { Link } from 'react-router-dom';
+import useSettingsStore from '../../store/useSettingsStore';
+import SpeedSettings from '../../utilities/SpeedSettings';
 
 const BubbleSort = () => {
-
+    const { animationSpeed } = useSettingsStore();
     const [bubbleArray, setBubbleArray] = useState<number[]>(RandomGenerator);
     const [compareIndices, setCompareIndices] = useState<number[]>([]);
     const [swapIndices, setSwapIndices] = useState<number[]>([]);
@@ -19,21 +21,25 @@ const BubbleSort = () => {
         setIsSorting(true);
         
         let currentArray = [...bubbleArray];
+        let liveSpeed = useSettingsStore.getState().animationSpeed;
+        await sleep(liveSpeed * 0.4);
 
         for (let i = 0; i < currentArray.length - 1; i++) {
             for (let j = 0; j < currentArray.length - i - 1; j++) {
 
                 setCompareIndices([j, j + 1]);
-                    await sleep(200);
+                    liveSpeed = useSettingsStore.getState().animationSpeed;
+                    await sleep(liveSpeed * 0.4);
 
                 if (currentArray[j] > currentArray[j + 1]) {
                     setSwapIndices([j, j + 1]);
-                    await sleep(200);
+                    await sleep(liveSpeed * 0.4);
                 let tempArray = currentArray[j];
                 currentArray[j] = currentArray[j + 1];
                 currentArray[j + 1] = tempArray;
                     setBubbleArray([...currentArray]);
-                    await sleep(500);
+                    liveSpeed = useSettingsStore.getState().animationSpeed;
+                    await sleep(liveSpeed);
                 }
 
                 setCompareIndices([]);
@@ -72,7 +78,7 @@ const BubbleSort = () => {
             <Link to="/" className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
                 Back to Home
             </Link>    
-            
+            <SpeedSettings />
 
             <div className="flex flex-row items-end justify-center h-64 gap-1 mt-10">
 
