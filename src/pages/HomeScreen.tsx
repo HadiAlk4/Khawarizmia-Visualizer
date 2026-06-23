@@ -13,7 +13,12 @@ const HomeScreen = () => {
             </header>
 
             <div className="grid grid-cols-4 gap-4" >
-                <Card footer = {<Link to="/sorting/BubbleSort" className="text-blue-500 hover:underline"> Bubble Sort </Link>} >
+                <Card footer = {
+                    <div className="flex flex-row gap-4"> 
+                    <Link to="/sorting/BubbleSort" className="text-blue-500 hover:underline"> Bubble Sort </Link> 
+                    <Link to="/sorting/SelectionSort" className="text-blue-500 hover:underline"> Selection Sort </Link> 
+                    </div>
+                    } >
                     <h1> Sorting </h1>
 
                 </Card> 
