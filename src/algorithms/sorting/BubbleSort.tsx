@@ -9,7 +9,7 @@ import SpeedSettings from '../../utilities/SpeedSettings';
 
 const BubbleSort = () => {
     const { animationSpeed } = useSettingsStore();
-    const [bubbleArray, setBubbleArray] = useState<number[]>(RandomGenerator);
+    const [bubbleArray, setBubbleArray] = useState<number[]>(RandomGenerator); // run only when it first reloads 
     const [compareIndices, setCompareIndices] = useState<number[]>([]);
     const [swapIndices, setSwapIndices] = useState<number[]>([]);
     const [sortedIndices, setSortedIndices] = useState<number[]>([]);
@@ -76,7 +76,7 @@ const BubbleSort = () => {
             </button>
 
             <Link to="/" className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
-                Back to Home
+                Back Home
             </Link>    
             <SpeedSettings />
 
