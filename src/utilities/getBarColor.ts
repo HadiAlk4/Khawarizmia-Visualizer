@@ -1,5 +1,5 @@
 
-const getBarColor = (index, compareIndices, swapIndices, sortedIndices) => {
+const getBarColor = (index: number, compareIndices: number[], swapIndices: number[], sortedIndices: number[]) => {
     if(sortedIndices.includes(index)) {
         return 'bg-blue-500';
     } else if(swapIndices.includes(index)) {
