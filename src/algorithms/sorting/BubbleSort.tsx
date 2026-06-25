@@ -15,6 +15,19 @@ const BubbleSort = () => {
     const [sortedIndices, setSortedIndices] = useState<number[]>([]);
     const [isSorting, setIsSorting] = useState<boolean>(false);
 
+    const handleInputChange = (index: number, value: string) => 
+    {
+        if(isSorting) return;
+        let num = parseInt(value, 10) || 0;
+        if (num > 50) num = 50;
+        const newArray = [...bubbleArray];
+        newArray[index] = num;
+        setBubbleArray(newArray);
+        setCompareIndices([]);
+        setSwapIndices([]);
+        setSortedIndices([]);
+    }
+
     const handleBubbleSort = async () => {
 
         if (isSorting) return;
@@ -60,6 +73,25 @@ const BubbleSort = () => {
             <SpeedSettings />
             </div>
             <h1 className="font-kufi text-6xl font-extrabold tracking-tight text-white bg-black text-center w-full py-2"> Bubble Sort </h1>
+            </div>
+            <div className="w-full bg-black/90 border-b-4 border-black py-4 flex justify-center items-center gap-3 z-10 relative shadow-md">
+                {bubbleArray.map((val, idx) => (
+                <input
+                key={idx}
+                type="number"
+                value={val || ""}
+                disabled={isSorting}
+                onChange={(e) => handleInputChange(idx, e.target.value)}
+                className="
+                w-14 h-14 bg-black text-[#94ce4e] text-center font-bold text-xl rounded-none
+                border-2 border-white/50 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.3)]
+                focus:border-[#94ce4e] focus:shadow-[2px_2px_0px_0px_#94ce4e] focus:outline-none
+                transition-colors disabled:opacity-50 disabled:cursor-not-allowed
+                /* This removes the browser's default up/down arrows from the number input */
+                [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
+                "
+                />
+                ))}
             </div>
             <div className="flex-col flex items-start gap-4 p-4 bg-black w-max  shadow-lg mt-0 font-kufi">
             <button onClick={() => {
