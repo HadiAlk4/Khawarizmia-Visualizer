@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Card from '../components/Card';
-
+import AnimatedTitle from '../components/AnimatedTitle';
 
 const HomeScreen = () => {
     return (
@@ -12,7 +12,7 @@ const HomeScreen = () => {
             <img src="/floral-border.jpg" className="absolute bottom-0 right-0 w-64  mix-blend-multiply scale-x-[1] scale-y-[-1] pointer-events-none" alt="" />
             <header className="items-center justify-center pt-10 pb-20">
                 <h1 className="font-kufi text-6xl font-extrabold tracking-tight text-black text-center">
-                    Khawarizmia-Visualizer
+                    <AnimatedTitle />
                 </h1>
             </header>
 

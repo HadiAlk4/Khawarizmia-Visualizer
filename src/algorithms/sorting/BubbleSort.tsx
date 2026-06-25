@@ -61,7 +61,7 @@ const BubbleSort = () => {
             </div>
             <h1 className="font-kufi text-6xl font-extrabold tracking-tight text-white bg-black text-center w-full py-2"> Bubble Sort </h1>
             </div>
-            <div className="flex-col flex items-start gap-4 p-4 bg-black w-max  shadow-lg mt-0">
+            <div className="flex-col flex items-start gap-4 p-4 bg-black w-max  shadow-lg mt-0 font-kufi">
             <button onClick={() => {
                 setBubbleArray(RandomGenerator())
                 setCompareIndices([]); 
@@ -89,7 +89,7 @@ const BubbleSort = () => {
 
                 {bubbleArray.map((value, index) => (
                     <div className={`w-20 relative  justify-center flex ${getBarColor(index, compareIndices, swapIndices, sortedIndices)}`} style={{ height: `${value * 4}px` }} key={index}>
-                        <span className={`font-bold text-black text-center ${value <= 6 ? 'absolute -top-6' : 'pt-1'}`}>
+                        <span className={`font-bold text-yellow-500 text-center ${value <= 6 ? 'absolute -top-6' : 'pt-1'}`}>
                             {value}
                         </span>
                         <span className="text-center absolute -bottom-6 text-white text-sm bg-black w-full py-0.5">
