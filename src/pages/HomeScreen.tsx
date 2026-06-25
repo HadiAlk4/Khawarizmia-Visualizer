@@ -5,8 +5,12 @@ import Card from '../components/Card';
 
 const HomeScreen = () => {
     return (
-        <div className="min-h-screen bg-slate-50 p-6">
-            <header className="items-center justify-center pt-10 pb-15">
+        <div className="relative overflow-hidden min-h-screen bg-slate-50 p-6 bg-[url('/topography.svg')]">
+            <img src="/floral-border.jpg" className="absolute top-0 left-0 w-64  mix-blend-multiply scale-x-[-1] pointer-events-none" alt="" />
+            <img src="/floral-border.jpg" className="absolute top-0 right-0 w-64  mix-blend-multiply scale-x-[1] pointer-events-none" alt="" />
+            <img src="/floral-border.jpg" className="absolute bottom-0 left-0 w-64  mix-blend-multiply scale-x-[-1] scale-y-[-1] pointer-events-none" alt="" />
+            <img src="/floral-border.jpg" className="absolute bottom-0 right-0 w-64  mix-blend-multiply scale-x-[1] scale-y-[-1] pointer-events-none" alt="" />
+            <header className="items-center justify-center pt-10 pb-20">
                 <h1 className="font-kufi text-6xl font-extrabold tracking-tight text-black text-center">
                     Khawarizmia-Visualizer
                 </h1>
