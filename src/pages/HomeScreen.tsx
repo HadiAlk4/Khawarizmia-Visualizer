@@ -18,19 +18,23 @@ const HomeScreen = () => {
 
             <div className="grid grid-cols-4 gap-4" >
                 <Card footer = {
-                    <div className="flex flex-row gap-4"> 
-                    <Link to="/sorting/BubbleSort" className="text-blue-500 hover:underline"> Bubble Sort </Link> 
-                    <Link to="/sorting/SelectionSort" className="text-blue-500 hover:underline"> Selection Sort </Link> 
+                    <div className="flex flex-row gap-4 justify-center"> 
+                    <Link to="/sorting/BubbleSort" className="text-blue-500 hover:underline text-[20px]"> Bubble Sort </Link> 
+                    <Link to="/sorting/SelectionSort" className="text-blue-500 hover:underline text-[20px]"> Selection Sort </Link> 
                     </div>
                     } >
-                    <h1> Sorting </h1>
+                    <div className="flex items-center gap-2 flex-col">
+                    <img src="/octopus-floating.gif" className="w-86 h-26"/>
+                    <h1 className="font-kufi font-extrabold tracking-tight text-black text-center text-lg"> Sorting Algorithms </h1>
+
+                    </div>
 
                 </Card> 
 
                 <Card />
 
                 <Card footer={<p >not default</p>}>
-                    <h2 >not default</h2>
+                    <h2 > make the the header Selection sort itself on start up </h2>
                 </Card>
 
                 <Card />

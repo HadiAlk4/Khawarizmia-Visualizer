@@ -87,11 +87,11 @@ const SelectionSort = () => {
             <div className='flex flex-row items-end justify-center h-64 gap-1 mt-10'>
                 {SelectionArray.map((value, index) => 
                 (
-                <div className={`w-10 relative justify-center flex ${getBarColor(index, compareIndices, swapIndices, sortedIndices)}`} style={{height: `${value * 4}px`}} key={index}> 
+                <div className={`w-20 relative justify-center flex ${getBarColor(index, compareIndices, swapIndices, sortedIndices)}`} style={{height: `${value * 4}px`}} key={index}> 
                 <span className={`font-bold text-black text-center text-grey-500 text-sm ${value <= 6 ? 'absolute -top-6' : 'pt-1'}`}>
                     {value}
                 </span>
-                <span className='absolute text-black text-center text-sm -bottom-6 font-bold'>
+                <span className="text-center absolute -bottom-6 text-white text-sm bg-black w-full py-0.5">
                     {index}
                 </span>
                 </div>
