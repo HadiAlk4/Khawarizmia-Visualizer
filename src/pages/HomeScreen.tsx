@@ -30,14 +30,22 @@ const HomeScreen = () => {
                     </div>
 
                 </Card> 
-
-                <Card />
-
-                <Card footer={<p >not default</p>}>
-                    <h2 > make the the header Selection sort itself on start up </h2>
+                    
+                <Card >
+                    <h2> post fix calc </h2>
                 </Card>
 
-                <Card />
+                <Card footer={<p >not default</p>}>
+                    <h2 > pre fix calc </h2>
+                </Card>
+
+                <Card >
+                    <h2> d-ary heap </h2>
+                </Card>
+
+                <Card>
+                    <h2> AVL tree balanced without recusrion </h2>
+                </Card>
             </div>
 
         </div>
