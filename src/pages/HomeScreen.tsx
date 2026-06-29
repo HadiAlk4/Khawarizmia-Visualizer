@@ -32,7 +32,7 @@ const HomeScreen = () => {
                 </Card> 
                     
                 <Card >
-                    <h2> post fix calc </h2>
+                    <Link to="/calculators/InfixToPostfix"  className="text-blue-500 hover:underline text-[20px]"> Infix to Postfix Calculator </Link>
                 </Card>
 
                 <Card footer={<p >not default</p>}>
