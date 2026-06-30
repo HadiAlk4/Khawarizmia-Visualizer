@@ -5,6 +5,7 @@ import HomeScreen from './pages/HomeScreen'
 import BubbleSort from './algorithms/sorting/BubbleSort'
 import SelectionSort from './algorithms/sorting/SelectionSort'
 import InfixToPostfix from './algorithms/calculators/InfixToPostFix'
+import PrefixCalc from './algorithms/calculators/PrefixCalc'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path="/sorting/BubbleSort" element={<BubbleSort />} />
       <Route path="/sorting/SelectionSort" element={<SelectionSort />} />
       <Route path="/calculators/InfixToPostfix" element={<InfixToPostfix />} />
+      <Route path="/calculators/PrefixCalc" element={<PrefixCalc />} />
       <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
       <Analytics />

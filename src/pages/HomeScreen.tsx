@@ -36,7 +36,7 @@ const HomeScreen = () => {
                 </Card>
 
                 <Card footer={<p >not default</p>}>
-                    <h2 > pre fix calc </h2>
+                    <Link to="/calculators/PrefixCalc" className="text-blue-500 hover:underline text-[20px]"> Infix To Prefix Calculator </Link>
                 </Card>
 
                 <Card >
