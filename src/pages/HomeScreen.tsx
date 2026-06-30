@@ -31,12 +31,20 @@ const HomeScreen = () => {
 
                 </Card> 
                     
-                <Card footer={<p> Using Shunting Yard Algorithim </p>}>
-                    <Link to="/calculators/InfixToPostfix"  className="text-blue-500 hover:underline text-[20px]"> Infix to Postfix Calculator </Link>
+                <Card footer={<p> Using Shunting Yard Algorithim (Reverse Polish Notation) </p>}>
+                    <div className="flex items-center gap-2 flex-col">
+                    <img src="/smShi.gif" className="w-96 h-26"/>
+                    <Link to="/calculators/InfixToPostfix"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Infix to Postfix Calculator </Link>
+
+                    </div>
+
                 </Card>
 
-                <Card footer={<p >not default</p>}>
-                    <Link to="/calculators/PrefixCalc" className="text-blue-500 hover:underline text-[20px]"> Infix To Prefix Calculator </Link>
+                <Card footer={<p >Reverse Output of Postfix (Polish Notation) </p>}>
+                    <div className="flex items-center gap-2 flex-col">
+                    <img src="/calc.gif" className="w-96 h-26"/>
+                    <Link to="/calculators/PrefixCalc"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Infix to Prefix Calculator </Link>
+                    </div>           
                 </Card>
 
                 <Card >
