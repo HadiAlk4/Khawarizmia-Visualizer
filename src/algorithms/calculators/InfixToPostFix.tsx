@@ -9,22 +9,42 @@ const InfixToPostfix = () => {
 
     const [currentToken, setCurrentToken] = useState<string | null>(null);
 
+    const [stack, setStack] = useState<string[]>([]);
+    const [output, setOutput] = useState<string[]>([]);
+
     const handleLoadInput = () => 
     {
         const tokens = rawInput.match(/\d+|\+|\-|\*|\/|\(|\)/g) || [];
 
         setInputTokens(tokens);
+
+        setCurrentToken(null);
+        setStack([]);
+        setOutput([]);
     };
 
     const handleStepForward = () => 
     {
-        if(inputTokens.length === 0) return;
-        const remainingTokens = [...inputTokens];
+        if(currentToken !== null)
+        {
+            if(/\d+/.test(currentToken))
+            {
+                setOutput([...output, currentToken]);
+            } 
+            else 
+            {
+                setStack([...stack, currentToken]);
+            }
+        }
 
-        const tokenToEvaluate = remainingTokens.shift();
-        
-        setInputTokens(remainingTokens);
-        setCurrentToken(tokenToEvaluate || null);
+        let nextToken = null;
+        if(inputTokens.length > 0)
+        {
+            const remainingTokens = [...inputTokens];
+            nextToken = remainingTokens.shift() || null;
+            setInputTokens(remainingTokens);
+        }
+        setCurrentToken(nextToken);
     }
     return (
         <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center gap-8 font-kufi bg-[url('/overlapping-circles.svg')]">
@@ -57,6 +77,33 @@ const InfixToPostfix = () => {
                     </div>
 
                 ))}
+            </div>
+
+
+            <div className="w-full max-w-4xl grid grid-cols-2 gap-12 mt-4">
+                <div className="flex flex-col items-center gap-2">
+                    <h2 text-xl font-bold bg-black text-white px-4 py-1> Operator Stack </h2>
+                    <div className="flex flex-col-reverse justify-start items-center gap-2 p-4 bg-white border-x-4 border-b-4 border-t-0 border-black w-32 min-h-[250px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        {stack.map((op, idx) => (
+                            <div key={idx} className="w-12 h-12 flex items-centeer justify-center bg-[#94ce4e] text-black border-2 border-black font-bold text-2xl">
+                                {op}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="flex flex-col items-center gap-2">
+                    <h2 text-xl font-bold bg-black text-white px-4 py-1> PostFix Output </h2>
+                    <div className="flex flex-wrap gap-2 p-4 bg-white border-4 border-black w-fullmin-h-[250px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] items-start content-start">
+                        {output.map((token, idx) => (
+                            <div key={idx} className="min-w-[40px] h-10 flex items-center justify-center bg-blue-500 text-white border-2 border-black font-bold text-xl px-2">
+                            {token}
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
             </div>
 
             <div className="flex flex-col items-center mt-4 border-t-4 border-black pt-8 w-full max-w-4xl">
