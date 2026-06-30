@@ -31,7 +31,7 @@ const HomeScreen = () => {
 
                 </Card> 
                     
-                <Card >
+                <Card footer={<p> Using Shunting Yard Algorithim </p>}>
                     <Link to="/calculators/InfixToPostfix"  className="text-blue-500 hover:underline text-[20px]"> Infix to Postfix Calculator </Link>
                 </Card>
 

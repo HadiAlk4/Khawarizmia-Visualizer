@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from 'react-router-dom';
 
 const InfixToPostfix = () => {
 
@@ -11,6 +11,16 @@ const InfixToPostfix = () => {
 
     const [stack, setStack] = useState<string[]>([]);
     const [output, setOutput] = useState<string[]>([]);
+
+    type HistorySnapshot = 
+    {
+        input: string[];
+        current: string | null;
+        stack: string[];
+        output: string[];
+    }
+
+    const [history, setHistory] = useState<HistorySnapshot[]>([]);
 
     const Precedence: Record<string, number> = 
     {
@@ -26,10 +36,18 @@ const InfixToPostfix = () => {
         setCurrentToken(null);
         setStack([]);
         setOutput([]);
+        setHistory([]);
     };
 
     const handleStepForward = () => 
     {
+        const snapshot: HistorySnapshot = {
+            input: [...inputTokens],
+            current: currentToken,
+            stack: [...stack],
+            output: [...output]
+        };
+        setHistory([...history, snapshot]);
 
         if(currentToken === null && inputTokens.length === 0 && stack.length > 0)
         {
@@ -92,12 +110,30 @@ const InfixToPostfix = () => {
         }
         setCurrentToken(nextToken);
     }
+
+    const handleStepBack = () => 
+    {
+        if(history.length === 0) return;
+
+        const newHistory = [...history];
+
+        const lastSnapshit = newHistory.pop() as HistorySnapshot;
+
+        setInputTokens(lastSnapshit.input);
+        setCurrentToken(lastSnapshit.current);
+        setStack(lastSnapshit.stack);
+        setOutput(lastSnapshit.output);
+
+        setHistory(newHistory);
+    }
     return (
         <div className="min-h-screen bg-slate-50 p-8 flex flex-col items-center gap-8 font-kufi bg-[url('/overlapping-circles.svg')]">
             <h1 className="text-4xl font-extrabold text-white bg-black px-6 py-2 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">            
             Shunting Yard Visualizer
             </h1>
-
+            <Link to="/" className="absolute top-8 left-8 px-6 py-2 bg-gray-500 text-white font-bold rounded-none hover:bg-gray-600 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-colors">
+                Back Home
+            </Link>   
             <div className="flex gap-4 items-center bg-white p-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-4">
                 <input
                 type="text"
@@ -157,12 +193,24 @@ const InfixToPostfix = () => {
             <div className="w-16 h-16 flex items-center justify-center bg-yellow-400 border-4 border-black font-bold text-3xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
             {currentToken || "?"}
             </div>
-            <button
-            onClick={handleStepForward}
-            className="px-8 py-4 bg-black text-white font-bold text-xl hover:bg-gray-800 transition-colors border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]"
-            >
-                Step Forward 
-            </button>
+
+            
+            <div className="flex gap-4">
+                <button
+                    onClick={handleStepBack}
+                    disabled={history.length === 0}
+                    className="px-8 py-4 bg-gray-500 text-white font-bold text-xl hover:bg-gray-600 transition-colors border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Step Back
+                </button>
+
+                <button
+                    onClick={handleStepForward}
+                    className="px-8 py-4 bg-black text-white font-bold text-xl hover:bg-gray-800 transition-colors border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]"
+                >
+                    Step Forward 
+                </button>
+            </div>
             </div>
 
 
