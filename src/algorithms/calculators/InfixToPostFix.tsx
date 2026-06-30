@@ -12,6 +12,11 @@ const InfixToPostfix = () => {
     const [stack, setStack] = useState<string[]>([]);
     const [output, setOutput] = useState<string[]>([]);
 
+    const Precedence: Record<string, number> = 
+    {
+        '+': 1, '-': 1, '/': 2, '*': 2
+    };
+
     const handleLoadInput = () => 
     {
         const tokens = rawInput.match(/\d+|\+|\-|\*|\/|\(|\)/g) || [];
@@ -25,15 +30,56 @@ const InfixToPostfix = () => {
 
     const handleStepForward = () => 
     {
+
+        if(currentToken === null && inputTokens.length === 0 && stack.length > 0)
+        {
+            const currentStack = [...stack];
+            const currentOutput = [...output];
+
+            const poppedOP = currentStack.pop() as string;
+            currentOutput.push(poppedOP);
+            setStack(currentStack);
+            setOutput(currentOutput);
+
+            return;
+        }
         if(currentToken !== null)
         {
             if(/\d+/.test(currentToken))
             {
                 setOutput([...output, currentToken]);
             } 
+            else if(currentToken === '(')
+            {
+                setStack([...stack, currentToken])
+            }
+            else if(currentToken === ')')
+            {
+                let currentStack = [...stack];
+                let currentOutput = [...output];
+
+                while(currentStack.length > 0 && currentStack[currentStack.length - 1] !== '(')
+                {
+                    currentOutput.push(currentStack.pop() as string);
+                }
+                currentStack.pop();
+                setStack(currentStack);
+                setOutput(currentOutput);
+            }
             else 
             {
-                setStack([...stack, currentToken]);
+                let currentStack = [...stack];
+                let currentOutput = [...output];
+
+                while( currentStack.length > 0 && currentStack[currentStack.length - 1] !== '(' && Precedence[currentStack[currentStack.length - 1]] >= (Precedence[currentToken] || 0) ) 
+                {
+                    const poppedOP = currentStack.pop() as string;
+                    currentOutput.push(poppedOP);
+                }
+                currentStack.push(currentToken);
+
+                setStack(currentStack);
+                setOutput(currentOutput);
             }
         }
 
@@ -82,10 +128,10 @@ const InfixToPostfix = () => {
 
             <div className="w-full max-w-4xl grid grid-cols-2 gap-12 mt-4">
                 <div className="flex flex-col items-center gap-2">
-                    <h2 text-xl font-bold bg-black text-white px-4 py-1> Operator Stack </h2>
+                    <h2 className="text-xl font-bold bg-black text-white px-4 py-1"> Operator Stack </h2>
                     <div className="flex flex-col-reverse justify-start items-center gap-2 p-4 bg-white border-x-4 border-b-4 border-t-0 border-black w-32 min-h-[250px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         {stack.map((op, idx) => (
-                            <div key={idx} className="w-12 h-12 flex items-centeer justify-center bg-[#94ce4e] text-black border-2 border-black font-bold text-2xl">
+                            <div key={idx} className="w-12 h-12 flex items-center justify-center bg-[#94ce4e] text-black border-2 border-black font-bold text-2xl">
                                 {op}
                             </div>
                         ))}
@@ -93,8 +139,8 @@ const InfixToPostfix = () => {
                 </div>
 
                 <div className="flex flex-col items-center gap-2">
-                    <h2 text-xl font-bold bg-black text-white px-4 py-1> PostFix Output </h2>
-                    <div className="flex flex-wrap gap-2 p-4 bg-white border-4 border-black w-fullmin-h-[250px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] items-start content-start">
+                    <h2 className="text-xl font-bold bg-black text-white px-4 py-1"> PostFix Output </h2>
+                    <div className="flex flex-wrap gap-2 p-4 bg-white border-4 border-black w-full min-h-[250px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] items-start content-start">
                         {output.map((token, idx) => (
                             <div key={idx} className="min-w-[40px] h-10 flex items-center justify-center bg-blue-500 text-white border-2 border-black font-bold text-xl px-2">
                             {token}
