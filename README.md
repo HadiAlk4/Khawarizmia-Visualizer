@@ -13,7 +13,7 @@ An interactive, web-based Data Structures and Algorithms visualizer designed to 
 * **Bubble Sort** 
 
 ### Advanced Structures & Parsers
-* **Prefix & Postfix Calculator** (WiP)
+* **Prefix & Postfix Calculator**
 * **d-ary Heaps** (WiP)
 * **AVL Tree** *(Balanced iteratively without recursion)* (WiP)
 
