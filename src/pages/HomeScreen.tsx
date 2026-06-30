@@ -34,7 +34,7 @@ const HomeScreen = () => {
                 <Card footer={<p> Using Shunting Yard Algorithim (Reverse Polish Notation) </p>}>
                     <div className="flex items-center gap-2 flex-col">
                     <img src="/smShi.gif" className="w-96 h-26"/>
-                    <Link to="/calculators/InfixToPostfix"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Infix to Postfix Calculator </Link>
+                    <Link to="/calculators/InfixToPostfix"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Infix to Postfix Visualizer </Link>
 
                     </div>
 
@@ -43,14 +43,16 @@ const HomeScreen = () => {
                 <Card footer={<p >Reverse Output of Postfix (Polish Notation) </p>}>
                     <div className="flex items-center gap-2 flex-col">
                     <img src="/calc.gif" className="w-96 h-26"/>
-                    <Link to="/calculators/PrefixCalc"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Infix to Prefix Calculator </Link>
+                    <Link to="/calculators/PrefixCalc"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Infix to Prefix Visualizer </Link>
                     </div>           
                 </Card>
 
                 <Card >
-                    <h2> d-ary heap </h2>
+                    <div className="flex items-center gap-2 flex-col">
+                    <img src="/bigK.gif" className="w-96 h-26"/>
+                    <Link to="/special/DAryHeaps"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> D-Ary Heaps </Link>
+                    </div>                  
                 </Card>
-
                 <Card>
                     <h2> AVL tree balanced without recusrion </h2>
                 </Card>
