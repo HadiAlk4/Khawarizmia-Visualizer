@@ -48,6 +48,51 @@ const DAryHeaps = () =>
 
     }
 
+    const handleExtractMax = () => {
+        if(heapArray.length === 0) return;
+        if(heapArray.length === 1){
+            setHeapArray([]);
+            return;
+        }
+
+        const newHeap = [...heapArray];
+
+        const lastElement = newHeap.pop() as number;
+        newHeap[0] = lastElement;
+
+        let currIdx = 0;
+
+        while(true){
+            const childrenIndicies = [];
+            for(let k = 1; k <= dValue; k++){
+                const childIdx = (dValue * currIdx) + k;
+                if(childIdx < newHeap.length){
+                    childrenIndicies.push(childIdx);
+                }
+            }
+            if(childrenIndicies.length === 0) break;
+
+            let largestChildIdx = childrenIndicies[0];
+
+            for(let i = 0; i < childrenIndicies.length; i++){
+                if(newHeap[childrenIndicies[i]] > newHeap[largestChildIdx]){
+                    largestChildIdx = childrenIndicies[i];
+                }
+            }
+                if(newHeap[currIdx] < newHeap[largestChildIdx]){
+                    const temp = newHeap[currIdx];
+                    newHeap[currIdx] = newHeap[largestChildIdx];
+                    newHeap[largestChildIdx] = temp;
+
+                    currIdx = largestChildIdx;
+                } else {
+                    break;
+                }
+        }
+
+        setHeapArray(newHeap);
+    }
+
     useEffect(() => {
         const newNodes: Node[] = [];
         const newEdges: Edge[] = [];
@@ -140,7 +185,7 @@ const DAryHeaps = () =>
         D-Ary Heap Visualizer
         </h1>
 
-        <div className="flex gap-4 items-center hg-white p-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-4">
+        <div className="flex gap-4 items-center bg-white p-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-4">
             <div className="flex flex-col items-center">
                 <label className="font-bold mb-1"> Set 'd' Value </label>
                 <input 
@@ -152,7 +197,16 @@ const DAryHeaps = () =>
                 className="p-2 border-2 border-black font-bold text-xl outline-none focus:border-[#94ce4e] w-24 text-center"
                 />
             </div>
-
+            <div className="flex flex-col items-center">
+                <label className="font-bold mb-1"> Remove </label>
+                <button 
+                    onClick={handleExtractMax}
+                    disabled={heapArray.length === 0}
+                    className="px-6 h-11 bg-red-500 text-white font-bold border-2 border-black hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                >
+                    Extract Max (Root)
+                </button>
+            </div>
             
 
         </div>
@@ -182,6 +236,25 @@ const DAryHeaps = () =>
             </div>
 
         ))}
+
+        {heapArray.length < 14 && (
+            <div className="flex flex-col items-center gap-1 ml-2">
+                <input 
+                    type="number"
+                    value={newValue}
+                    onChange={(e) => setNewValue(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') handleInsert(); }}
+                    placeholder="+"
+                    className="w-[50px] h-12 border-2 border-black font-bold text-xl outline-none focus:border-[#94ce4e] focus:bg-green-50 text-center transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                />
+            </div>
+        )}
+        
+        {heapArray.length >= 14 && (
+            <div className="flex items-center justify-center h-12 ml-4 text-red-500 font-bold border-2 border-dashed border-red-500 px-4">
+            (14/14)
+            </div>
+        )}
         </div>
 
         </div>

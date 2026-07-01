@@ -47,7 +47,7 @@ const HomeScreen = () => {
                     </div>           
                 </Card>
 
-                <Card >
+                <Card footer={<p >Binary Heap but instead of having at most two children it has at most `d` children. </p>}>
                     <div className="flex items-center gap-2 flex-col">
                     <img src="/bigK.gif" className="w-96 h-26"/>
                     <Link to="/special/DAryHeaps"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> D-Ary Heaps </Link>
