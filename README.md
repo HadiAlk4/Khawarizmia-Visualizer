@@ -14,7 +14,7 @@ An interactive, web-based Data Structures and Algorithms visualizer designed to 
 
 ### Advanced Structures & Parsers
 * **Prefix & Postfix Calculator**
-* **d-ary Heaps** (WiP)
+* **d-ary Heaps** 
 * **AVL Tree** *(Balanced iteratively without recursion)* (WiP)
 
 ---
