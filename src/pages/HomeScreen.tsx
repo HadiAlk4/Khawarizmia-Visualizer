@@ -54,7 +54,10 @@ const HomeScreen = () => {
                     </div>                  
                 </Card>
                 <Card footer={<p> AVL tree balanced without recusrion</p>}>
+                    <div className="flex items-center gap-2 flex-col">
+                    <img src="/forest.gif" className="w-96 h-26"/>
                     <Link to="/special/AvlNoRecursion"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Stack AVL </Link>
+                    </div>
                 </Card>
             </div>
 
