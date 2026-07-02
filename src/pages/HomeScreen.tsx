@@ -53,8 +53,8 @@ const HomeScreen = () => {
                     <Link to="/special/DAryHeaps"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> D-Ary Heaps </Link>
                     </div>                  
                 </Card>
-                <Card>
-                    <h2> AVL tree balanced without recusrion </h2>
+                <Card footer={<p> AVL tree balanced without recusrion</p>}>
+                    <Link to="/special/AvlNoRecursion"  className="font-kufi font-extrabold tracking-tight text-blue-500 hover:underline text-center text-lg"> Stack AVL </Link>
                 </Card>
             </div>
 

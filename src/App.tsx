@@ -7,6 +7,7 @@ import SelectionSort from './algorithms/sorting/SelectionSort'
 import InfixToPostfix from './algorithms/calculators/InfixToPostFix'
 import PrefixCalc from './algorithms/calculators/PrefixCalc'
 import DAryHeaps from './algorithms/special/DAryHeaps'
+import AvlNoRecursion from './algorithms/special/AvlNoRecursion'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/calculators/InfixToPostfix" element={<InfixToPostfix />} />
       <Route path="/calculators/PrefixCalc" element={<PrefixCalc />} />
       <Route path="/special/DAryHeaps" element={<DAryHeaps />} />
+      <Route path="/special/AvlNoRecursion" element={<AvlNoRecursion />} />
       <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
       <Analytics />
